@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="GetRequestsSuite">
+    <test name="GetRequestsTests">
+        <classes>
+            <class name="admin.TestsRole" >
+                <methods>
+                    <include name="successDeleteRole"/>
+                    <include name="getListOfRolesAfterDelete"/>
+                </methods>
+            </class>
+            <class name="admin.TestPermission" >
+                <methods>
+                    <include name="successDeletePermission"/>
+                    <include name="getListOfPermissionsAfterDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

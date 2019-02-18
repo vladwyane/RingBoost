@@ -10,6 +10,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -28,47 +29,46 @@ public class TestsRole extends TestBase{
     int amountRolesAfter;
 
 
-    @BeforeTest(description = "POST request for getting token")
-    public void getToken() {
+    @BeforeClass(description = "POST request for getting token")
+    public void getTokenAndListOfRoles() throws IOException {
         String token = Auth.getToken(Credentials.ADMIN);
         request = authWithToken(token);
         request.header("Content-Type", "application/json");
+        Response response = request.get(RequestURI.ROLE_URI);
+        JSONObject jsonObject = new JSONObject(response.asString());
+        roles = mapper.readValue(jsonObject.toString(), Roles.class);
+        idLastRole = roles.getModels().get(roles.getModels().size() - 1).getId();
+        amountRolesBefore = roles.getModels().size();
     }
 
     @Test()
-    public void test1getListOfRoles() throws IOException {
-        Response response = request.get(RequestURI.ROLE_URI);
-        JSONObject jsonObject = new JSONObject(response.asString());
-        Roles roles = mapper.readValue(jsonObject.toString(), Roles.class);
+    public void getListOfRoles() throws IOException {
         Assert.assertEquals(roles.getResult(), "success");
     }
 
     @Test()
-    public void test2errorCreateRoleWith4Symbols() throws IOException {
+    public void errorCreateRoleWith4Symbols() throws IOException {
         request.body(roles.addParamToBodyForCreareRole(RolesData.TEST_4_SYMBOLS));
         Response response = request.post(RequestURI.ROLE_URI);
-        JSONObject jsonObject = new JSONObject(response.asString());
         Assert.assertEquals(response.statusCode(), 422);
     }
 
     @Test()
-    public void test3successCreateRole() throws IOException {
-        amountRolesBefore = roles.getModels().size();
+    public void successCreateRole() throws IOException {
         request.body(roles.addParamToBodyForCreareRole(RolesData.TEST_5_SYMBOLS));
         Response response = request.post(RequestURI.ROLE_URI);
         Assert.assertEquals(response.statusCode(), 201);
     }
 
     @Test()
-    public void test4errorCreateRoleWithExistName() throws IOException {
+    public void errorCreateRoleWithExistName() throws IOException {
         request.body(roles.addParamToBodyForCreareRole(RolesData.TEST_5_SYMBOLS));
         Response response = request.post(RequestURI.ROLE_URI);
         Assert.assertEquals(response.statusCode(), 422);
     }
 
-
     @Test()
-    public void test4getDisplayNameLastRole() throws IOException {
+    public void getDisplayNameLastRole() throws IOException {
         Response response = request.get(RequestURI.ROLE_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
         roles = mapper.readValue(jsonObject.toString(), Roles.class);
@@ -77,7 +77,7 @@ public class TestsRole extends TestBase{
     }
 
     @Test()
-    public void test4getListOfRolesAfterCreateNewRole() throws IOException {
+    public void getListOfRolesAfterCreateNewRole() throws IOException {
         Response response = request.get(RequestURI.ROLE_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
         roles = mapper.readValue(jsonObject.toString(), Roles.class);
@@ -87,20 +87,20 @@ public class TestsRole extends TestBase{
     }
 
     @Test()
-    public void test5getLastRoleById() throws IOException {
+    public void getLastRoleById() throws IOException {
         Response response = request.get(RequestURI.ROLE_URI + idLastRole);
         Assert.assertEquals(response.statusCode(), 200);
     }
 
     @Test()
-    public void test6successUpdateRole() throws IOException {
+    public void successUpdateRole() throws IOException {
         request.body(roles.addParamToBodyForCreareRole(RolesData.TEST_UPDATE_NAME));
         Response response = request.patch(RequestURI.ROLE_URI + idLastRole);
         Assert.assertEquals(response.statusCode(), 200);
     }
 
     @Test()
-    public void test7getDisplayNameLastRoleAfterUpdate() throws IOException {
+    public void getDisplayNameLastRoleAfterUpdate() throws IOException {
         Response response = request.get(RequestURI.ROLE_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
         roles = mapper.readValue(jsonObject.toString(), Roles.class);
@@ -109,13 +109,13 @@ public class TestsRole extends TestBase{
     }
 
     @Test()
-    public void test8successDeleteRole() throws IOException {
-        Response response = request.delete(RequestURI.ROLE_URI + 35);
+    public void successDeleteRole() throws IOException {
+        Response response = request.delete(RequestURI.ROLE_URI + idLastRole);
         Assert.assertEquals(response.statusCode(), 204);
     }
 
     @Test()
-    public void test9getListOfRolesAfterDelete() throws IOException {
+    public void getListOfRolesAfterDelete() throws IOException {
         Response response = request.get(RequestURI.ROLE_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
         roles = mapper.readValue(jsonObject.toString(), Roles.class);
