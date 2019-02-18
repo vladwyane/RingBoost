@@ -39,7 +39,7 @@ public class TestsRole extends TestBase{
     public void test1getListOfRoles() throws IOException {
         Response response = request.get(RequestURI.ROLE_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
-        roles = mapper.readValue(jsonObject.toString(), Roles.class);
+        Roles roles = mapper.readValue(jsonObject.toString(), Roles.class);
         Assert.assertEquals(roles.getResult(), "success");
     }
 
