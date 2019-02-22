@@ -8,6 +8,8 @@ public enum RolesData {
     ADMIN ("ringboost admin", "Ringboost Admin", "Admin"),
     TEST_4_SYMBOLS ("test", "Test", "Test"),
     TEST_UPDATE_NAME ("newQA", "UpdateQa", "NewQA"),
+    ROLE_USER ("roleQA", "UserQa", "NewRoleUser"),
+    ROLE_PERMISSION ("permissionQA", "roleQa", "NewRolePermission"),
     TEST_5_SYMBOLS ("qa+/-", "QA+/-", "Engin");
 
     private String name;

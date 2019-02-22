@@ -2,9 +2,8 @@ package admin;
 
 import admin.autorization.Auth;
 import admin.permissions.Permissions;
-import admin.role.Roles;
 import admin.testData.PermissionsData;
-import admin.testData.RolesData;
+import admin.testData.UsersData;
 import base.TestBase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
@@ -31,14 +30,13 @@ public class TestPermission extends TestBase {
 
 
     @BeforeClass(description = "POST request for getting token")
-    public void getTokenAndListOfPermissions() throws IOException {
-        String token = Auth.getToken(Credentials.ADMIN);
+    public void getTokenAndListOf() throws IOException {
+        String token = Auth.getToken(UsersData.ADMIN);
         request = authWithToken(token);
         request.header("Content-Type", "application/json");
-        Response response = request.get(RequestURI.PERMISSION_URI);
+        Response response = request.get(RequestURI.PERMISSIONS_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
         permissions = mapper.readValue(jsonObject.toString(), Permissions.class);
-        idLastPermissions = permissions.getModels().get(permissions.getModels().size() - 1).getId();
         amountPermissionsBefore = permissions.getModels().size();
     }
 
@@ -49,23 +47,21 @@ public class TestPermission extends TestBase {
 
     @Test()
     public void successCreatePermission() throws IOException {
-        amountPermissionsBefore = permissions.getModels().size();
         request.body(permissions.addParamToBodyForCrearePermissijn(PermissionsData.ALL_CAN));
-        Response response = request.post(RequestURI.PERMISSION_URI);
+        Response response = request.post(RequestURI.PERMISSIONS_URI);
         Assert.assertEquals(response.statusCode(), 201);
     }
 
     @Test()
     public void errorCreatePermissionsWithExistName() throws IOException {
         request.body(permissions.addParamToBodyForCrearePermissijn(PermissionsData.ALL_CAN));
-        Response response = request.post(RequestURI.PERMISSION_URI);
+        Response response = request.post(RequestURI.PERMISSIONS_URI);
         Assert.assertEquals(response.statusCode(), 422);
     }
 
-
     @Test()
     public void getDisplayNameLastPermission() throws IOException {
-        Response response = request.get(RequestURI.PERMISSION_URI);
+        Response response = request.get(RequestURI.PERMISSIONS_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
         permissions = mapper.readValue(jsonObject.toString(), Permissions.class);
         String displayNameLastPermission = permissions.getModels().get(permissions.getModels().size() - 1).getDisplayName();
@@ -74,7 +70,7 @@ public class TestPermission extends TestBase {
 
     @Test()
     public void getListOfPermissionsAfterCreateNewPermission() throws IOException {
-        Response response = request.get(RequestURI.PERMISSION_URI);
+        Response response = request.get(RequestURI.PERMISSIONS_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
         permissions = mapper.readValue(jsonObject.toString(), Permissions.class);
         amountPermissionsAfter = permissions.getModels().size();
@@ -84,20 +80,20 @@ public class TestPermission extends TestBase {
 
     @Test()
     public void getLastPermissionById() throws IOException {
-        Response response = request.get(RequestURI.PERMISSION_URI + idLastPermissions);
+        Response response = request.get(RequestURI.PERMISSIONS_URI + idLastPermissions);
         Assert.assertEquals(response.statusCode(), 200);
     }
 
     @Test()
     public void successUpdatePermission() throws IOException {
         request.body(permissions.addParamToBodyForCrearePermissijn(PermissionsData.TEST_UPDATE_NAME));
-        Response response = request.patch(RequestURI.PERMISSION_URI + idLastPermissions);
+        Response response = request.patch(RequestURI.PERMISSIONS_URI + idLastPermissions);
         Assert.assertEquals(response.statusCode(), 200);
     }
 
     @Test()
     public void getDisplayNameLastPermissionAfterUpdate() throws IOException {
-        Response response = request.get(RequestURI.PERMISSION_URI);
+        Response response = request.get(RequestURI.PERMISSIONS_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
         permissions = mapper.readValue(jsonObject.toString(), Permissions.class);
         String displayNameLastPermission = permissions.getModels().get(permissions.getModels().size() - 1).getDisplayName();
@@ -106,13 +102,13 @@ public class TestPermission extends TestBase {
 
     @Test()
     public void successDeletePermission() throws IOException {
-        Response response = request.delete(RequestURI.PERMISSION_URI + idLastPermissions);
+        Response response = request.delete(RequestURI.PERMISSIONS_URI + idLastPermissions);
         Assert.assertEquals(response.statusCode(), 204);
     }
 
     @Test()
     public void getListOfPermissionsAfterDelete() throws IOException {
-        Response response = request.get(RequestURI.PERMISSION_URI);
+        Response response = request.get(RequestURI.PERMISSIONS_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
         permissions = mapper.readValue(jsonObject.toString(), Permissions.class);
         Assert.assertEquals(permissions.getModels().size(), amountPermissionsBefore);

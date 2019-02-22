@@ -1,0 +1,36 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AdminTestsSuite">
+    <test name="CreateNewPermission">
+        <classes>
+            <class name="admin.TestPermission" >
+                <methods>
+                    <include name="getListOfPermissions"/>
+                    <include name="successCreatePermission"/>
+                    <include name="errorCreatePermissionsWithExistName"/>
+                    <include name="getDisplayNameLastPermission"/>
+                    <include name="getListOfPermissionsAfterCreateNewPermission"/>
+                    <include name="getLastPermissionById"/>
+                    <include name="successUpdatePermission"/>
+                    <include name="getDisplayNameLastPermissionAfterUpdate"/>
+                    <include name="successDeletePermission"/>
+                    <include name="getListOfPermissionsAfterDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="AddPermissionToRole">
+        <classes>
+            <class name="admin.TestPermissionsToRole" >
+                <methods>
+                    <include name="getPermissionsForRoleWithId"/>
+                    <include name="addPermissionsForRoleWithId"/>
+                    <include name="successAddingPermissionsForRoleWithId"/>
+                    <include name="getPermissionByIdForRoleWithId"/>
+                    <include name="errorGetPermissionByIdForRoleWithId"/>
+                    <include name="deletePermissionByIdForRoleWithId"/>
+                    <include name="getPermissionsForRoleWithIdAfterDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

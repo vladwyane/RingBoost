@@ -2,6 +2,7 @@ package admin.autorization;
 
 import admin.Credentials;
 import admin.RequestURI;
+import admin.testData.UsersData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,12 +19,12 @@ public class Auth {
 	@JsonProperty("success")
 	private Success success;
 
-	public static String getToken(Credentials credentials) {
+	public static String getToken(UsersData usersData) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		String body = "{\n" +
-				" \"email\": \"" + credentials.getEmail() + "\",\n" +
-				" \"password\": \"" + credentials.getPassword() + "\"\n" +
+				" \"email\": \"" + usersData.getEmail() + "\",\n" +
+				" \"password\": \"" + usersData.getPassword() + "\"\n" +
 				"}";
 
 		HttpEntity request = new HttpEntity (body, headers);

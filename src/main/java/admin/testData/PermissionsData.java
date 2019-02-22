@@ -7,6 +7,7 @@ public enum PermissionsData {
 
     CREATE_POSTS ("create-post", "Create Posts", "create new blog posts"),
     TEST_UPDATE_NAME ("all-can-new", "AllCanNew", "all permissions new"),
+    PERMISSION_ROLE ("permission-can-new", "RoleCanNew", "Permissions Role"),
     ALL_CAN ("all-can", "All Can", "all permissions");
 
     private String name;

@@ -1,0 +1,93 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AdminTestsSuite">
+    <test name="AddRoleToUser">
+        <classes>
+            <class name="admin.TestRoleToUser" >
+                <methods>
+                    <include name="getRoleForUserWithId"/>
+                    <include name="addRoleForUserWithId"/>
+                    <include name="successAddingRoleForUserWithId"/>
+                    <include name="getRoleByIdForUserWithId"/>
+                    <include name="errorGetRoleByIdForUserWithId"/>
+                    <include name="deleteRoleByIdForUserWithId"/>
+                    <include name="getRoleForUserWithIdAfterDelete"/>
+                    <include name="successLoginNewUser"/>
+                    <include name="successLogOut"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="AddPermissionToRole">
+        <classes>
+            <class name="admin.TestPermissionsToRole" >
+                <methods>
+                    <include name="getPermissionsForRoleWithId"/>
+                    <include name="addPermissionsForRoleWithId"/>
+                    <include name="successAddingPermissionsForRoleWithId"/>
+                    <include name="getPermissionByIdForRoleWithId"/>
+                    <include name="errorGetPermissionByIdForRoleWithId"/>
+                    <include name="deletePermissionByIdForRoleWithId"/>
+                    <include name="getPermissionsForRoleWithIdAfterDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="CreateNewPermission">
+        <classes>
+            <class name="admin.TestPermission" >
+                <methods>
+                    <include name="getListOfPermissions"/>
+                    <include name="successCreatePermission"/>
+                    <include name="errorCreatePermissionsWithExistName"/>
+                    <include name="getDisplayNameLastPermission"/>
+                    <include name="getListOfPermissionsAfterCreateNewPermission"/>
+                    <include name="getLastPermissionById"/>
+                    <include name="successUpdatePermission"/>
+                    <include name="getDisplayNameLastPermissionAfterUpdate"/>
+                    <include name="successDeletePermission"/>
+                    <include name="getListOfPermissionsAfterDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="CreateNewRole">
+        <classes>
+            <class name="admin.TestsRole" >
+                <methods>
+                    <include name="getListOfRoles"/>
+                    <include name="successCreateRole"/>
+                    <include name="errorCreateRoleWith4Symbols"/>
+                    <include name="errorCreateRoleWithExistName"/>
+                    <include name="getDisplayNameLastRole"/>
+                    <include name="getListOfRolesAfterCreateNewRole"/>
+                    <include name="getLastRoleById"/>
+                    <include name="successUpdateRole"/>
+                    <include name="getDisplayNameLastRoleAfterUpdate"/>
+                    <include name="successDeleteRole"/>
+                    <include name="getListOfRolesAfterDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="CreateNewUser">
+        <classes>
+            <class name="admin.TestsUser" >
+                <methods>
+                    <include name="getListOfUsers"/>
+                    <include name="successCreateNewUser"/>
+                    <include name="errorCreateUserWithInvalidName"/>
+                    <include name="errorCreateUserWithInvalidEmail"/>
+                    <include name="errorCreateUserWithInvalidPassword"/>
+                    <include name="errorCreateUserWithInvalidConfirmPass"/>
+                    <include name="errorCreateUserWithExistName"/>
+                    <include name="getDisplayEmailLastUser"/>
+                    <include name="getLastUserById"/>
+                    <include name="successUpdateUser"/>
+                    <include name="getEmailLastUserAfterUpdate"/>
+                    <include name="successDeleteUser"/>
+                    <include name="getListOfUsersAfterDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

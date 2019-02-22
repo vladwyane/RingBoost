@@ -1,0 +1,44 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AdminTestsSuite">
+    <test name="CreateNewUser">
+        <classes>
+            <class name="admin.TestsUser" >
+                <methods>
+                    <include name="getListOfUsers"/>
+                    <include name="errorCreateUserWithInvalidName"/>
+                    <include name="errorCreateUserWithInvalidEmail"/>
+                    <include name="errorCreateUserWithInvalidPassword"/>
+                    <include name="errorCreateUserWithInvalidConfirmPass"/>
+                    <include name="successCreateNewUser"/>
+                    <include name="errorCreateUserWithExistName"/>
+                    <include name="getDisplayEmailLastUser"/>
+                    <include name="getListOfRolesAfterCreateNewUser"/>
+                    <include name="getLastUserById"/>
+                    <include name="successUpdateUser"/>
+                    <include name="getEmailLastUserAfterUpdate"/>
+                    <include name="successDeleteUser"/>
+                    <include name="getListOfUsersAfterDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="CreateNewRole">
+        <classes>
+            <class name="admin.TestsRole" >
+                <methods>
+                    <include name="getListOfRoles"/>
+                    <include name="successCreateRole"/>
+                    <include name="errorCreateRoleWith4Symbols"/>
+                    <include name="errorCreateRoleWithExistName"/>
+                    <include name="getDisplayNameLastRole"/>
+                    <include name="getListOfRolesAfterCreateNewRole"/>
+                    <include name="getLastRoleById"/>
+                    <include name="successUpdateRole"/>
+                    <include name="getDisplayNameLastRoleAfterUpdate"/>
+                    <include name="successDeleteRole"/>
+                    <include name="getListOfRolesAfterDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

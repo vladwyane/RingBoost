@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AdminTestsSuite">
+    <test name="AddRoleToUser">
+        <classes>
+            <class name="admin.TestRoleToUser" >
+                <methods>
+                    <include name="getRoleForUserWithId"/>
+                    <include name="addRoleForUserWithId"/>
+                    <include name="successAddingRoleForUserWithId"/>
+                    <include name="getRoleByIdForUserWithId"/>
+                    <include name="errorGetRoleByIdForUserWithId"/>
+                    <include name="deleteRoleByIdForUserWithId"/>
+                    <include name="getRoleForUserWithIdAfterDelete"/>
+                    <include name="successLoginNewUser"/>
+                    <include name="successLogOut"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
