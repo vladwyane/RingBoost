@@ -1,9 +1,7 @@
 package admin;
 
-import admin.autorization.Auth;
 import admin.role.Roles;
 import admin.testData.RolesData;
-import admin.testData.UsersData;
 import base.TestBase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
@@ -28,10 +26,8 @@ public class TestsRole extends TestBase{
     int amountRolesAfter;
 
     @BeforeClass(description = "POST request for getting token")
-    public void getToken() throws IOException {
-        String token = Auth.getToken(UsersData.ADMIN);
-        request = authWithToken(token);
-        request.header("Content-Type", "application/json");
+    public void requestListOfRoles() throws IOException {
+        request = getToken();
         Response response = request.get(RequestURI.ROLES_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
         roles = mapper.readValue(jsonObject.toString(), Roles.class);

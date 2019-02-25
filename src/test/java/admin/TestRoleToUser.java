@@ -35,10 +35,8 @@ public class TestRoleToUser extends TestBase {
     String token;
 
     @BeforeClass(description = "POST request for getting token")
-    public void getTokenAndListOfRolesAndPermissions() throws IOException {
-        token = Auth.getToken(UsersData.ADMIN);
-        request = authWithToken(token);
-        request.header("Content-Type", "application/json");
+    public void requestListOfRolesAndUser() throws IOException {
+        request = getToken();
         request.body(users.addParamToBodyForCreareUser(UsersData.USER_ROLE));
         request.post(RequestURI.REGISTER_USER_URI);
 
@@ -57,9 +55,7 @@ public class TestRoleToUser extends TestBase {
 
     @AfterClass(description = "POST request for getting token")
     public void delete() throws IOException {
-        token = Auth.getToken(UsersData.ADMIN);
-        request = authWithToken(token);
-        request.header("Content-Type", "application/json");
+        request = getToken();
 
         request.delete(RequestURI.USERS_URI + idLastUser);
         request.delete(RequestURI.ROLES_URI + idLastRole);

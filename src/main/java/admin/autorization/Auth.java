@@ -1,6 +1,5 @@
 package admin.autorization;
 
-import admin.Credentials;
 import admin.RequestURI;
 import admin.testData.UsersData;
 import com.fasterxml.jackson.annotation.JsonProperty;

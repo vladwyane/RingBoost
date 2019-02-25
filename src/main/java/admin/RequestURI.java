@@ -12,10 +12,14 @@ public class RequestURI {
     public static String ROLES = "/roles/";
     public static String USERS = "/users/";
     public static String REGISTER = "/register/";
+    public static String NUMBERS = "/numbers/";
+    public static String SERVICE = "/services/";
     public static String LOGIN_URI = SERVER_URI + LOGIN;
     public static String LOGOUT_URI = SERVER_URI + LOGOUT;
     public static String ROLES_URI = SERVER_URI + ROLES;
     public static String PERMISSIONS_URI = SERVER_URI + PERMISSION;
     public static String USERS_URI = SERVER_URI + USERS;
     public static String REGISTER_USER_URI = SERVER_URI + REGISTER;
+    public static String NUMBERS_URI = SERVER_URI + NUMBERS;
+    public static String SERVICES_URI = SERVER_URI + SERVICE;
 }

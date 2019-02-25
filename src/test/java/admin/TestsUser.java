@@ -29,11 +29,8 @@ public class TestsUser extends TestBase {
     int amountUsersAfter;
 
     @BeforeClass(description = "POST request for getting token")
-    public void getTokenAndList() throws IOException, InterruptedException {
-        Thread.sleep(5000);
-        String token = Auth.getToken(UsersData.ADMIN);
-        request = authWithToken(token);
-        request.header("Content-Type", "application/json");
+    public void requestListOfUsers() throws IOException, InterruptedException {
+        request = getToken();
         Response response = request.get(RequestURI.USERS_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
         users = mapper.readValue(jsonObject.toString(), Users.class);

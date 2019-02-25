@@ -30,10 +30,8 @@ public class TestPermission extends TestBase {
 
 
     @BeforeClass(description = "POST request for getting token")
-    public void getTokenAndListOf() throws IOException {
-        String token = Auth.getToken(UsersData.ADMIN);
-        request = authWithToken(token);
-        request.header("Content-Type", "application/json");
+    public void requestListOfPermissions() throws IOException {
+        request = getToken();
         Response response = request.get(RequestURI.PERMISSIONS_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
         permissions = mapper.readValue(jsonObject.toString(), Permissions.class);

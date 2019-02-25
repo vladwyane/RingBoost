@@ -33,10 +33,8 @@ public class TestPermissionsToRole extends TestBase {
 
 
     @BeforeClass(description = "POST request for getting token")
-    public void getTokenAndListOfRolesAndPermissions() throws IOException {
-        String token = Auth.getToken(UsersData.ADMIN);
-        request = authWithToken(token);
-        request.header("Content-Type", "application/json");
+    public void requestListOfRolesAndPermissions() throws IOException {
+        request = getToken();
 
         request.body(roles.addParamToBodyForCreareRole(RolesData.ROLE_PERMISSION));
         request.post(RequestURI.ROLES_URI);
