@@ -1,5 +1,6 @@
 package admin.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -27,5 +28,21 @@ public class Services {
 		}
 		return result;
 	}
+
+	public List<String> parseOneApi(String nameApi) {
+		List<String> listApiname = new ArrayList<String>();
+		listApiname.add(nameApi);
+		return listApiname;
+	}
+
+	public List<String> parseAllActiveApi() {
+		List<String> listApiname = new ArrayList<String>();
+		for (int i = 0; i < data.size(); i++) {
+			if (data.get(i).isActive() == true)
+				listApiname.add(data.get(i).getName());
+		}
+		return listApiname;
+	}
+
 
 }

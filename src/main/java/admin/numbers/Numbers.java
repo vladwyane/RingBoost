@@ -20,7 +20,7 @@ public class Numbers {
 
 	public boolean resulAfterSearchNumber(String digits) {
 		boolean result = false;
-		for (int i = 0; i < numbers.size() - 1; i++) {
+		for (int i = 0; i < numbers.size(); i++) {
 			if (numbers.get(i).getPhone().contains(digits)) {
 				result = true;
 			}
@@ -33,7 +33,7 @@ public class Numbers {
 
 	public boolean resulAfterFilterationByApiName(String api) {
 		boolean result = false;
-		for (int i = 0; i < numbers.size() - 1; i++) {
+		for (int i = 0; i < numbers.size(); i++) {
 			if (numbers.get(i).getApi().contains(api)) {
 				result = true;
 			}
@@ -46,7 +46,7 @@ public class Numbers {
 
 	public boolean resulAfterFilterationByCountry(String country) {
 		boolean result = false;
-		for (int i = 0; i < numbers.size() - 1; i++) {
+		for (int i = 0; i < numbers.size(); i++) {
 			if (numbers.get(i).getCountry().equals(country)) {
 				result = true;
 			}
@@ -59,7 +59,7 @@ public class Numbers {
 
 	public boolean resulAfterFilterationByTypeNumbers(String type) {
 		boolean result = false;
-		for (int i = 0; i < numbers.size() - 1; i++) {
+		for (int i = 0; i < numbers.size(); i++) {
 			if (numbers.get(i).getType().equals(type)) {
 				result = true;
 			}
@@ -72,7 +72,7 @@ public class Numbers {
 
 	public boolean resulAfterSearchNumberByPrice(String price) {
 		boolean result = false;
-		for (int i = 0; i < numbers.size() - 1; i++) {
+		for (int i = 0; i < numbers.size(); i++) {
 			if (String.valueOf(numbers.get(i).getPrice()).contains(price)) {
 				result = true;
 			}
@@ -85,7 +85,7 @@ public class Numbers {
 
 	public boolean resulAfterSearchNumberByDefaultPrice(String defaultPrice) {
 		boolean result = false;
-		for (int i = 0; i < numbers.size() - 1; i++) {
+		for (int i = 0; i < numbers.size(); i++) {
 			if (String.valueOf(numbers.get(i).getPrice()).contains(defaultPrice)) {
 				result = true;
 			}

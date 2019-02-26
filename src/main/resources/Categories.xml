@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AdminTestsSuite">
+    <test name="CreateNewCategory">
+        <classes>
+            <class name="admin.TestsCategories" >
+                <methods>
+                    <include name="getListOfCategories"/>
+                    <include name="successCreateCategory"/>
+                    <include name="errorCreateCategoryWithExistName"/>
+                    <include name="getNameLastCategory"/>
+                    <include name="getListOfCategoriesAfterCreateNewCategory"/>
+                    <include name="getLastCategoryById"/>
+                    <include name="successUpdateCategory"/>
+                    <include name="getNameLastCategoryAfterUpdate"/>
+                    <include name="successDeleteCategory"/>
+                    <include name="getListOfCategoriesAfterDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
