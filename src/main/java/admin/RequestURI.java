@@ -15,6 +15,7 @@ public class RequestURI {
     public static String NUMBERS = "/numbers/";
     public static String SERVICE = "/services/";
     public static String CATEGORIES = "/categories/";
+    public static String PATTERNS = "/patterns/";
     public static String LOGIN_URI = SERVER_URI + LOGIN;
     public static String LOGOUT_URI = SERVER_URI + LOGOUT;
     public static String ROLES_URI = SERVER_URI + ROLES;
@@ -24,4 +25,5 @@ public class RequestURI {
     public static String NUMBERS_URI = SERVER_URI + NUMBERS;
     public static String SERVICES_URI = SERVER_URI + SERVICE;
     public static String CATEGORIES_URI = SERVER_URI + CATEGORIES;
+    public static String PATTERNS_URI = SERVER_URI + PATTERNS;
 }

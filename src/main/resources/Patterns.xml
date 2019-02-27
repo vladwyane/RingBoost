@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AdminTestsSuite">
+    <test name="CreateNewPattern">
+        <classes>
+            <class name="admin.TestPatterns" >
+                <methods>
+                    <include name="getListOfPatterns"/>
+                    <include name="errorCreatePatternsWith11Symbols"/>
+                    <include name="successCreatePattern"/>
+                    <include name="errorCreatePatternWithExistName"/>
+                    <include name="getNameLastPattern"/>
+                    <include name="getListOfPatternsAfterCreateNewRole"/>
+                    <include name="getLastPatternById"/>
+                    <include name="successUpdatePattern"/>
+                    <include name="getDisplayNameLastPatternAfterUpdate"/>
+                    <include name="successDeletePattern"/>
+                    <include name="getListOfPatternAfterDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
