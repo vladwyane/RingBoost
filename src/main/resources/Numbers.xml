@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AdminTestsSuite">
+<test name="Numbers">
+    <classes>
+        <class name="admin.TestNumbers" >
+            <methods>
+                <include name="getListOfNumbers"/>
+                <include name="searchNumbersByWord"/>
+                <include name="searchNumbersByDigits"/>
+                <include name="filtrationNumbersByApi"/>
+                <include name="filtrationNumbersByCountry"/>
+                <include name="filtrationNumbersByTypeNumbers"/>
+                <include name="searchNumbersByPrise"/>
+                <include name="searchNumbersByDefaultPrise"/>
+            </methods>
+        </class>
+    </classes>
+</test>
+</suite>

@@ -2,9 +2,8 @@
 <suite name="AdminTestsSuite">
     <test name="AddRoleToUser">
         <classes>
-            <class name="admin.TestRoleToUser" >
+            <class name="admin.TestsRoleToUser" >
                 <methods>
-                    <include name="getRoleForUserWithId"/>
                     <include name="addRoleForUserWithId"/>
                     <include name="successAddingRoleForUserWithId"/>
                     <include name="getRoleByIdForUserWithId"/>

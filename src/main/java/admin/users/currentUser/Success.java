@@ -1,4 +1,4 @@
-package admin.patterns;
+package admin.users.currentUser;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -9,19 +9,10 @@ import javax.annotation.Generated;
 @Data
 @NoArgsConstructor
 @Generated("com.robohorse.robopojogenerator")
-public class Category{
-
-	@JsonProperty("updated_at")
-	private UpdatedAt updatedAt;
-
-	@JsonProperty("price")
-	private int price;
+public class Success{
 
 	@JsonProperty("name")
 	private String name;
-
-	@JsonProperty("created_at")
-	private CreatedAt createdAt;
 
 	@JsonProperty("id")
 	private int id;

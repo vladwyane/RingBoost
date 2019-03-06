@@ -22,20 +22,15 @@ public class Users {
 	@JsonProperty("models")
 	private List<ModelsItem> models;
 
-	public String addParamToBodyForCreareUser(UsersData usersData) {
-		JSONObject requestBody = new JSONObject();
-		requestBody.put("email", usersData.getEmail());
-		requestBody.put("name", usersData.getName());
-		requestBody.put("password", usersData.getPassword());
-		requestBody.put("c_password", usersData.getC_password());
-		return requestBody.toString();
-	}
-
-	public String addParamToBodyForUpdateUser(UsersData usersData) {
-		JSONObject requestBody = new JSONObject();
-		requestBody.put("name", usersData.getName());
-		requestBody.put("email", usersData.getEmail());
-		return requestBody.toString();
+	public int getElementOrderByUserId (int userId) {
+		int elementOrder = 0;
+		for (int i = 0; i < models.size(); i++) {
+			if (models.get(i).getId() == userId) {
+				elementOrder = i;
+				return elementOrder;
+			}
+		}
+		return elementOrder;
 	}
 
 }

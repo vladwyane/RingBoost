@@ -1,4 +1,4 @@
-package admin.patterns;
+package admin.categories.currentCategory;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -9,27 +9,21 @@ import javax.annotation.Generated;
 @Data
 @NoArgsConstructor
 @Generated("com.robohorse.robopojogenerator")
-public class ModelsItem{
+public class Model{
 
 	@JsonProperty("updated_at")
 	private UpdatedAt updatedAt;
 
 	@JsonProperty("price")
-	private int price;
+	private String price;
 
-	@JsonProperty("pattern")
-	private String pattern;
+	@JsonProperty("name")
+	private String name;
 
 	@JsonProperty("created_at")
 	private CreatedAt createdAt;
 
 	@JsonProperty("id")
 	private int id;
-
-	@JsonProperty("type")
-	private String type;
-
-	@JsonProperty("category")
-	private Category category;
 
 }

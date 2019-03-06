@@ -2,7 +2,7 @@
 <suite name="AdminTestsSuite">
     <test name="AddRoleToUser">
         <classes>
-            <class name="admin.TestRoleToUser" >
+            <class name="admin.TestsRoleToUser" >
                 <methods>
                     <include name="getRoleForUserWithId"/>
                     <include name="addRoleForUserWithId"/>
@@ -19,7 +19,7 @@
     </test>
     <test name="AddPermissionToRole">
         <classes>
-            <class name="admin.TestPermissionsToRole" >
+            <class name="admin.TestsPermissionsToRole" >
                 <methods>
                     <include name="getPermissionsForRoleWithId"/>
                     <include name="addPermissionsForRoleWithId"/>
@@ -34,7 +34,7 @@
     </test>
     <test name="CreateNewPermission">
         <classes>
-            <class name="admin.TestPermission" >
+            <class name="admin.TestsPermission" >
                 <methods>
                     <include name="getListOfPermissions"/>
                     <include name="successCreatePermission"/>

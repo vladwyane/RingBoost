@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AdminTestsSuite">
+<test name="Services">
+    <classes>
+        <class name="admin.TestsServices" >
+            <methods>
+                <include name="getListOfApi"/>
+                <include name="checkStatusAllApi"/>
+                <include name="parseOneApiByName"/>
+                <include name="parseAllApi"/>
+            </methods>
+        </class>
+    </classes>
+</test>
+</suite>

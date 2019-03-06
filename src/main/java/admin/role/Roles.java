@@ -21,11 +21,4 @@ public class Roles {
 	@JsonProperty("models")
 	private List<ModelsItem> models;
 
-	public String addParamToBodyForCreareRole(RolesData rolesData) {
-		JSONObject requestBody = new JSONObject();
-		requestBody.put("name", rolesData.getName());
-		requestBody.put("description", rolesData.getDescription());
-		requestBody.put("display_name", rolesData.getDisplay_name());
-		return requestBody.toString();
-	}
 }

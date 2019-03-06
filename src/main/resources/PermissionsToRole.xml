@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AdminTestsSuite">
+    <test name="AddPermissionToRole">
+        <classes>
+            <class name="admin.TestsPermissionsToRole" >
+                <methods>
+                    <include name="addPermissionsForRoleWithId"/>
+                    <include name="successAddingPermissionsForRoleWithId"/>
+                    <include name="getPermissionByIdForRoleWithId"/>
+                    <include name="errorGetPermissionByIdForRoleWithId"/>
+                    <include name="deletePermissionByIdForRoleWithId"/>
+                    <include name="getPermissionsForRoleWithIdAfterDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

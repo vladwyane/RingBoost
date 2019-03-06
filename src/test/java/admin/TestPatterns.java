@@ -1,14 +1,11 @@
 package admin;
 
 import admin.categories.Categories;
+import admin.categories.currentCategory.CurrentCategory;
 import admin.patterns.Patterns;
-import admin.permissionToRole.PermissionToRole;
-import admin.permissions.Permissions;
-import admin.role.Roles;
+import admin.patterns.currentPattern.CurrentPattern;
 import admin.testData.CategoriesData;
 import admin.testData.PatternsData;
-import admin.testData.PermissionsData;
-import admin.testData.RolesData;
 import base.TestBase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
@@ -19,7 +16,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import sun.security.krb5.internal.PAData;
 
 import java.io.IOException;
 
@@ -30,10 +26,12 @@ public class TestPatterns extends TestBase {
 
     RequestSpecification request = RestAssured.given();
     ObjectMapper mapper = new ObjectMapper();
+    CurrentPattern currentPattern = new CurrentPattern();
     Patterns patterns = new Patterns();
     Categories categories = new Categories();
-    int idLastCategory;
-    int idLastPattern;
+    CurrentCategory currentCategory = new CurrentCategory();
+    int idCreatedCategory;
+    int idCreatedPattern;
     int amountPatternsBefore;
     int amountPatternsAfter;
 
@@ -42,97 +40,86 @@ public class TestPatterns extends TestBase {
     public void requestListOfCategoriesAndPatterns() throws IOException {
         request = getToken();
 
-        request.body(categories.addParamToBodyForCreateCategory(CategoriesData.CHRISTMAS));
-        request.post(RequestURI.CATEGORIES_URI);
-
-        Response response = request.get(RequestURI.PATTERNS_URI);
+        request.body(currentCategory.addParamToBodyForCreateCategory(CategoriesData.CHRISTMAS));
+        Response response = request.post(RequestURI.CATEGORIES_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
-        patterns = mapper.readValue(jsonObject.toString(), Patterns.class);
-        idLastPattern = patterns.getModels().get(patterns.getModels().size() - 1).getId();
-        amountPatternsBefore = patterns.getModels().size();
-        response = request.get(RequestURI.CATEGORIES_URI);
-        jsonObject = new JSONObject(response.asString());
-        categories = mapper.readValue(jsonObject.toString(), Categories.class);
-        idLastCategory = categories.getModels().get(categories.getModels().size() - 1).getId();
-
+        currentCategory = mapper.readValue(jsonObject.toString(), CurrentCategory.class);
+        idCreatedCategory = currentCategory.getModel().getId();
     }
 
     @AfterClass()
     public void delete() throws IOException {
-        request.delete(RequestURI.CATEGORIES_URI + idLastCategory);
+        request.delete(RequestURI.CATEGORIES_URI + idCreatedCategory);
     }
 
     @Test()
     public void getListOfPatterns() throws IOException {
+        Response response = request.get(RequestURI.PATTERNS_URI);
+        JSONObject jsonObject = new JSONObject(response.asString());
+        patterns = mapper.readValue(jsonObject.toString(), Patterns.class);
+        amountPatternsBefore = patterns.getModels().size();
         Assert.assertEquals(patterns.getResult(), "success");
     }
 
     @Test()
     public void errorCreatePatternsWith11Symbols() throws IOException {
-        request.body(patterns.addParamToBodyForCrearePatterns(PatternsData.TEST_11_SYMBOLS, idLastCategory));
+        request.body(patterns.addParamToBodyForCrearePatterns(PatternsData.TEST_11_SYMBOLS, idCreatedCategory));
         Response response = request.post(RequestURI.PATTERNS_URI);
         Assert.assertEquals(response.statusCode(), 422);
     }
 
     @Test()
-    public void successCreatePattern() throws IOException {
-        request.body(patterns.addParamToBodyForCrearePatterns(PatternsData.BIG_DROP, idLastCategory));
+    public void successCreateNewPattern() throws IOException {
+        request.body(patterns.addParamToBodyForCrearePatterns(PatternsData.BIG_DROP, idCreatedCategory));
         Response response = request.post(RequestURI.PATTERNS_URI);
+        JSONObject jsonObject = new JSONObject(response.asString());
+        currentPattern = mapper.readValue(jsonObject.toString(), CurrentPattern.class);
+        idCreatedPattern = currentPattern.getModel().getId();
         Assert.assertEquals(response.statusCode(), 201);
     }
 
     @Test()
     public void errorCreatePatternWithExistName() throws IOException {
-        request.body(patterns.addParamToBodyForCrearePatterns(PatternsData.BIG_DROP, idLastCategory));
+        request.body(patterns.addParamToBodyForCrearePatterns(PatternsData.BIG_DROP, idCreatedCategory));
         Response response = request.post(RequestURI.PATTERNS_URI);
         Assert.assertEquals(response.statusCode(), 422);
     }
 
     @Test()
-    public void getNameLastPattern() throws IOException {
-        Response response = request.get(RequestURI.PATTERNS_URI);
-        JSONObject jsonObject = new JSONObject(response.asString());
-        patterns = mapper.readValue(jsonObject.toString(), Patterns.class);
-        String nameLastPattern = patterns.getModels().get(patterns.getModels().size() - 1).getPattern();
-        Assert.assertEquals(nameLastPattern, PatternsData.BIG_DROP.getPattern());
-    }
-
-    @Test()
-    public void getListOfPatternsAfterCreateNewRole() throws IOException {
+    public void checkAmountPatternsAfterCreateNewRole() throws IOException {
         Response response = request.get(RequestURI.PATTERNS_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
         patterns = mapper.readValue(jsonObject.toString(), Patterns.class);
         amountPatternsAfter = patterns.getModels().size();
-        idLastPattern = patterns.getModels().get(amountPatternsAfter - 1).getId();
         Assert.assertEquals(amountPatternsBefore + 1, amountPatternsAfter);
     }
 
     @Test()
-    public void getLastPatternById() throws IOException {
-        Response response = request.get(RequestURI.PATTERNS_URI + idLastPattern);
+    public void getCurrentPatternById() throws IOException {
+        Response response = request.get(RequestURI.PATTERNS_URI + idCreatedPattern);
         Assert.assertEquals(response.statusCode(), 200);
     }
 
     @Test()
-    public void successUpdatePattern() throws IOException {
-        request.body(patterns.addParamToBodyForCrearePatterns(PatternsData.UPDATE_PRICE, idLastCategory));
-        Response response = request.patch(RequestURI.PATTERNS_URI + idLastPattern);
-        Assert.assertEquals(response.statusCode(), 200);
-    }
-
-    @Test()
-    public void getDisplayNameLastPatternAfterUpdate() throws IOException {
-        Response response = request.get(RequestURI.PATTERNS_URI);
+    public void successUpdateCurrentPattern() throws IOException {
+        request.body(patterns.addParamToBodyForUpdatePatterns(PatternsData.UPDATE_PRICE, idCreatedCategory));
+        Response response = request.patch(RequestURI.PATTERNS_URI + idCreatedPattern);
         JSONObject jsonObject = new JSONObject(response.asString());
-        patterns = mapper.readValue(jsonObject.toString(), Patterns.class);
-        int priceLastPattern = patterns.getModels().get(patterns.getModels().size() - 1).getPrice();
-        Assert.assertEquals(priceLastPattern, PatternsData.UPDATE_PRICE.getPattern());
+        currentPattern = mapper.readValue(jsonObject.toString(), CurrentPattern.class);
+        String priceCurrentPattern = currentPattern.getModel().getPrice();
+        Assert.assertEquals(priceCurrentPattern, PatternsData.UPDATE_PRICE.getPrice());
     }
 
     @Test()
     public void successDeletePattern() throws IOException {
-        Response response = request.delete(RequestURI.PATTERNS_URI + idLastPattern);
+        Response response = request.delete(RequestURI.PATTERNS_URI + idCreatedPattern);
         Assert.assertEquals(response.statusCode(), 204);
+    }
+
+    @Test()
+    public void errorPatternByIdAfterDelete() throws IOException {
+        Response response = request.get(RequestURI.PATTERNS_URI + idCreatedPattern);
+        Assert.assertEquals(response.statusCode(), 404);
     }
 
     @Test()

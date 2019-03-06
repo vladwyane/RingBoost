@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AdminTestsSuite">
+    <test name="CreateNewPermission">
+        <classes>
+            <class name="admin.TestsPermission" >
+                <methods>
+                    <include name="getListOfPermissions"/>
+                    <include name="successCreateNewPermission"/>
+                    <include name="errorCreatePermissionsWithExistName"/>
+                    <include name="checkAmountPermissionsAfterCreateNewPermission"/>
+                    <include name="getCurrentPermissionById"/>
+                    <include name="successUpdatePermission"/>
+                    <include name="successDeletePermission"/>
+                    <include name="errorPermissionByIdAfterDelete"/>
+                    <include name="getListOfPermissionsAfterDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

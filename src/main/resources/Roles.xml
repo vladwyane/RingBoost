@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AdminTestsSuite">
+    <test name="CreateNewRole">
+        <classes>
+            <class name="admin.TestsRole" >
+                <methods>
+                    <include name="getListOfRoles"/>
+                    <include name="errorCreateRoleWith4Symbols"/>
+                    <include name="successCreateNewRole"/>
+                    <include name="errorCreateRoleWithExistName"/>
+                    <include name="checkAmountRolesAfterCreateNewRole"/>
+                    <include name="getCurrentRoleById"/>
+                    <include name="successUpdateCurrentRole"/>
+                    <include name="successDeleteRole"/>
+                    <include name="errorRoleByIdAfterDelete"/>
+                    <include name="getListOfRolesAfterDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

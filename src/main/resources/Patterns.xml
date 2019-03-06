@@ -6,14 +6,13 @@
                 <methods>
                     <include name="getListOfPatterns"/>
                     <include name="errorCreatePatternsWith11Symbols"/>
-                    <include name="successCreatePattern"/>
+                    <include name="successCreateNewPattern"/>
                     <include name="errorCreatePatternWithExistName"/>
-                    <include name="getNameLastPattern"/>
-                    <include name="getListOfPatternsAfterCreateNewRole"/>
-                    <include name="getLastPatternById"/>
-                    <include name="successUpdatePattern"/>
-                    <include name="getDisplayNameLastPatternAfterUpdate"/>
+                    <include name="checkAmountPatternsAfterCreateNewRole"/>
+                    <include name="getCurrentPatternById"/>
+                    <include name="successUpdateCurrentPattern"/>
                     <include name="successDeletePattern"/>
+                    <include name="errorPatternByIdAfterDelete"/>
                     <include name="getListOfPatternAfterDelete"/>
                 </methods>
             </class>

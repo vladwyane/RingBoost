@@ -18,12 +18,11 @@ import java.util.List;
 /**
  * Created by bigdrop on 2/25/2019.
  */
-public class TestServices extends TestBase {
+public class TestsServices extends TestBase {
 
     RequestSpecification request = RestAssured.given();
     ObjectMapper mapper = new ObjectMapper();
     Services services = new Services();
-
 
 
     @BeforeClass(description = "POST request for getting token")

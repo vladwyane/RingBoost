@@ -111,11 +111,11 @@ public class TestNumbers extends TestBase {
     public void searchNumbersByDefaultPrise() throws IOException {
         RequestSpecification request;
         request = getToken();
-        request.formParam("default_price", "12");
+        request.formParam("default_price", "0");
         Response response = request.get(RequestURI.NUMBERS_URI);
         JSONObject jsonObject = new JSONObject(response.asString());
         numbers = mapper.readValue(jsonObject.toString(), Numbers.class);
-        boolean result = numbers.resulAfterSearchNumberByDefaultPrice("12");
+        boolean result = numbers.resulAfterSearchNumberByDefaultPrice("0");
         Assert.assertTrue(result);
     }
 }

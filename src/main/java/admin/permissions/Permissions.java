@@ -22,12 +22,4 @@ public class Permissions {
 	@JsonProperty("models")
 	private List<ModelsItem> models;
 
-	public String addParamToBodyForCrearePermissijn (PermissionsData permissionsData) {
-		JSONObject requestBody = new JSONObject();
-		requestBody.put("name", permissionsData.getName());
-		requestBody.put("description", permissionsData.getDescription());
-		requestBody.put("display_name", permissionsData.getDisplay_name());
-		return requestBody.toString();
-	}
-
 }

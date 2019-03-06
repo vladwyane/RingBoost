@@ -3,7 +3,6 @@ package admin.patterns;
 import java.util.List;
 
 import admin.testData.PatternsData;
-import admin.testData.UsersData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +21,22 @@ public class Patterns {
 	@JsonProperty("models")
 	private List<ModelsItem> models;
 
+	public void setResult(String result){
+		this.result = result;
+	}
+
+	public String getResult(){
+		return result;
+	}
+
+	public void setModels(List<ModelsItem> models){
+		this.models = models;
+	}
+
+	public List<ModelsItem> getModels(){
+		return models;
+	}
+
 	public String addParamToBodyForCrearePatterns(PatternsData patternsData, int category_id) {
 		JSONObject requestBody = new JSONObject();
 		requestBody.put("pattern", patternsData.getPattern());
@@ -30,5 +45,13 @@ public class Patterns {
 		requestBody.put("category_id", category_id);
 		return requestBody.toString();
 	}
+
+	public String addParamToBodyForUpdatePatterns(PatternsData patternsData, int category_id) {
+		JSONObject requestBody = new JSONObject();
+		requestBody.put("price", patternsData.getPrice());
+		requestBody.put("category_id", category_id);
+		return requestBody.toString();
+	}
+
 
 }

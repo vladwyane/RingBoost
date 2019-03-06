@@ -1,4 +1,4 @@
-package admin.patterns;
+package admin.permissions.currentPermission;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -19,29 +19,5 @@ public class UpdatedAt{
 
 	@JsonProperty("timezone_type")
 	private int timezoneType;
-
-	public void setDate(String date){
-		this.date = date;
-	}
-
-	public String getDate(){
-		return date;
-	}
-
-	public void setTimezone(String timezone){
-		this.timezone = timezone;
-	}
-
-	public String getTimezone(){
-		return timezone;
-	}
-
-	public void setTimezoneType(int timezoneType){
-		this.timezoneType = timezoneType;
-	}
-
-	public int getTimezoneType(){
-		return timezoneType;
-	}
 
 }

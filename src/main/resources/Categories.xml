@@ -5,14 +5,13 @@
             <class name="admin.TestsCategories" >
                 <methods>
                     <include name="getListOfCategories"/>
-                    <include name="successCreateCategory"/>
+                    <include name="successCreateNewCategory"/>
                     <include name="errorCreateCategoryWithExistName"/>
-                    <include name="getNameLastCategory"/>
-                    <include name="getListOfCategoriesAfterCreateNewCategory"/>
-                    <include name="getLastCategoryById"/>
-                    <include name="successUpdateCategory"/>
-                    <include name="getNameLastCategoryAfterUpdate"/>
+                    <include name="checkAmountCategoriesAfterCreateNewCategory"/>
+                    <include name="getCurrentCategoryById"/>
+                    <include name="successUpdateCurrentCategory"/>
                     <include name="successDeleteCategory"/>
+                    <include name="errorCategoryByIdAfterDelete"/>
                     <include name="getListOfCategoriesAfterDelete"/>
                 </methods>
             </class>
